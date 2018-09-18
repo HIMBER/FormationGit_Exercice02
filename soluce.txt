@@ -1,0 +1,76 @@
+git lg --all
+
+git merge origin/hotfix01
+
+git reset ORIG_HEAD --hard
+git lg --all
+
+git merge origin/hotfix01 --no-ff -m "Prise en compte du HotFix1"
+git lg
+
+
+git checkout -b feature4
+rm EditionPaie.p
+git reset HEAD --hard
+
+
+vi EditionPaie.p
+git diff
+
+git add .
+git cm "Fonctionnalité 4"
+git lg
+
+git checkout master
+git branch -d feature4
+git branch -D feature4
+git branch --all
+
+
+--------
+git reflog
+git reset HEAD@{1}
+
+git branch feature4
+git reset HEAD~ --soft
+--------
+OU
+--------
+# noter le numéro de commit indiqué dans le message de suppression de la branche feature4 suite à l'appel à "git branch -D feature4"
+# Deleted branch feature4 (was 789290e).
+
+git branch feature4 789290e
+--------
+
+git lg --all
+
+
+vi EditionPaie.p
+git checkout master
+
+git stash
+
+git checkout master
+
+git checkout feature4
+
+git stash pop
+
+
+
+git diff origin/feature2..feature4
+
+git checkout master
+git merge feature4
+
+
+git checkout feature2
+git rebase master
+
+git mergetool
+git st
+git clean -n
+git clean -f
+git rebase --continue
+git checkout -
+git merge feature2
